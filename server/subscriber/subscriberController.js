@@ -1,8 +1,8 @@
 
-Book = require('./bookModel');
+Subscriber = require('./subscriberModel');
 
 exports.index = function (req, res) {
-    Book.get(function (err, books) {
+    Subscriber.get(function (err, subscribers) {
         if (err) {
             res.json({
                 status: "error",
@@ -11,55 +11,55 @@ exports.index = function (req, res) {
         }
         res.json({
             status: "success",
-            message: "Books retrieved successfully",
-            data: books
+            message: "Subscribers retrieved successfully",
+            data: subscribers
         });
     });
 };
 
 exports.new = function (req, res) {
-    var book = new Book();
-    book.name = req.body.name ? req.body.name : book.name;
-    book.quantity = req.body.quantity;
-    book.author = req.body.author;
+    var subscriber = new Subscriber();
+    subscriber.name = req.body.name ? req.body.name : book.name;
+    subscriber.book = req.body.book;
+   
     
 // save the book and check for errors
-    book.save(function (err) {
+subscriber.save(function (err) {
         // if (err)
         //     res.json(err);
 res.json({
             message: 'New book created!',
-            data: book
+            data: subscriber
         });
     });
 };
 // Handle view book info
 exports.view = function (req, res) {
-    Book.find(req.params.name, function (err, book) {
+    Subscriber.find(req.params.name, function (err, subscriber) {
         if (err)
             res.send(err);
         res.json({
-            message: 'Book details loading..',
-            data: book
+            message: 'Subscriber details loading..',
+            data: subscriber
         });
     });
 };
 // Handle update book info
 exports.update = function (req, res) {
-Book.find(req.params.name, function (err, book) {
+Subscriber.find(req.params.name, function (err, subscriber) {
         if (err)
             res.send(err);
-        book.name = req.body.name ? req.body.name : book.name;
-        book.quantity = req.body.quantity;
-        book.author = req.body.author;
+            subscriber.name = req.body.name ? req.body.name : subscriber.name;
+            subscriber.book = req.body.book;
+       
        
 // save the book and check for errors
-        book.save(function (err) {
+subscriber.save(function (err) {
             if (err)
                 res.json(err);
             res.json({
-                message: 'Book Info updated',
-                data: book
+                message: 'Subscriber Info updated',
+                data: subscriber
             });
         });
     });
@@ -67,14 +67,14 @@ Book.find(req.params.name, function (err, book) {
 };
 // Handle delete book
 exports.delete = function (req, res) {
-    Book.remove({
+    Subscriber.remove({
         name: req.params.name
-    }, function (err, book) {
+    }, function (err, subscriber) {
         if (err)
             res.send(err);
 res.json({
             status: "success",
-            message: 'Book deleted'
+            message: 'Subscriber deleted'
         });
     });
 };
