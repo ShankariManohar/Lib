@@ -27,7 +27,7 @@ exports.new = function (req, res) {
     book.save(function (err) {
         // if (err)
         //     res.json(err);
-res.json({
+        res.json({
             message: 'New book created!',
             data: book
         });
@@ -72,7 +72,7 @@ exports.delete = function (req, res) {
     }, function (err, book) {
         if (err)
             res.send(err);
-res.json({
+        res.json({
             status: "success",
             message: 'Book deleted'
         });

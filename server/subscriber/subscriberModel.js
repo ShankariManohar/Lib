@@ -12,7 +12,7 @@ var subscriberSchema = mongoose.Schema({
     
 });
 // Export Contact model
-var Subscriber = module.exports = mongoose.model('book', subscriberSchema);
+var Subscriber = module.exports = mongoose.model('subscriber', subscriberSchema);
 module.exports.get = function (callback, limit) {
     Subscriber.find(callback).limit(limit);
 }

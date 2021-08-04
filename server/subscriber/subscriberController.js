@@ -19,10 +19,10 @@ exports.index = function (req, res) {
 
 exports.new = function (req, res) {
     var subscriber = new Subscriber();
-    subscriber.name = req.body.name ? req.body.name : book.name;
+    subscriber.name = req.body.name ? req.body.name : subscriber.name;
     subscriber.book = req.body.book;
    
-    
+    console.log(subscriber +"-"+req.body.name);
 // save the book and check for errors
 subscriber.save(function (err) {
         // if (err)
