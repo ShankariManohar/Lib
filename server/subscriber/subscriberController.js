@@ -20,9 +20,10 @@ exports.index = function (req, res) {
 exports.new = function (req, res) {
     var subscriber = new Subscriber();
     subscriber.name = req.body.name ? req.body.name : subscriber.name;
-    subscriber.book = req.body.book;
+    subscriber.books = req.body.books;
    
     console.log(subscriber +"-"+req.body.name);
+    
 // save the book and check for errors
 subscriber.save(function (err) {
         // if (err)
@@ -67,7 +68,7 @@ subscriber.save(function (err) {
 };
 // Handle delete book
 exports.delete = function (req, res) {
-    Subscriber.remove({
+    Subscriber.findOneAndRemove({
         name: req.params.name
     }, function (err, subscriber) {
         if (err)

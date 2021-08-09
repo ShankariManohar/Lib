@@ -67,14 +67,27 @@ Book.find(req.params.name, function (err, book) {
 };
 // Handle delete book
 exports.delete = function (req, res) {
-    Book.remove({
-        name: req.params.name
-    }, function (err, book) {
-        if (err)
-            res.send(err);
-        res.json({
+     Book.findOneAndRemove({
+         name: req.body.name
+     }, function (err, book) {
+         if (err)
+             res.send(err);
+         res.json({
             status: "success",
-            message: 'Book deleted'
-        });
-    });
-};
+             message: "book Deleted"
+         });
+     });
+ };
+
+// exports.delete('/delete_book',(req,res) =>{
+//     Book.findOneAndRemove({
+//                 name: req.params.name
+//         }, function (err, book) {
+//                  if (err)
+//                      res.send(err);
+//                  res.json({
+//                      status: "success",
+//                      message: 'Book deleted'
+//                  });
+//              });
+// })

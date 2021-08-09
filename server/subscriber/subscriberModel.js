@@ -6,7 +6,7 @@ var subscriberSchema = mongoose.Schema({
         required: true
     },
     books: {
-        type: [String],
+        type: Array,
         required: true
     }
     

@@ -23,7 +23,7 @@ router.route('/books')
 //     .put(bookController.update)
 //     .delete(bookController.delete);
 
-router.post('/books/:name/delete', bookController.delete);
+router.delete('/delete_book', bookController.delete);
 
     // book routes
 router.route('/subscribers')
