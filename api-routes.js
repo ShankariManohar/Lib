@@ -24,16 +24,18 @@ router.route('/books')
 //     .delete(bookController.delete);
 
 router.delete('/delete_book', bookController.delete);
+router.patch('/update_book', bookController.update);
+router.put('/update_book', bookController.update);
 
-    // book routes
+    // sub routes
 router.route('/subscribers')
 .get(subscriberController.index)
 .post(subscriberController.new);
-router.route('/subscribers/:name')
-.get(subscriberController.view)
-.patch(subscriberController.update)
-.put(subscriberController.update )
-.delete(subscriberController.delete);
+//router.route('/subscribers/:name')
+router.get(subscriberController.view)
+router.patch('/update_subscriber',subscriberController.update)
+router.put('/update_subscriber',subscriberController.update )
+router.delete('/delete_subscriber',subscriberController.delete);
 
 // Export API routes
 module.exports = router;

@@ -45,31 +45,25 @@ exports.view = function (req, res) {
         });
     });
 };
-// Handle update book info
+// Handle update sub info
 exports.update = function (req, res) {
-Subscriber.find(req.params.name, function (err, subscriber) {
-        if (err)
-            res.send(err);
-            subscriber.name = req.body.name ? req.body.name : subscriber.name;
-            subscriber.book = req.body.book;
-       
-       
-// save the book and check for errors
-subscriber.save(function (err) {
-            if (err)
-                res.json(err);
-            res.json({
-                message: 'Subscriber Info updated',
-                data: subscriber
-            });
-        });
+    const query = { name: req.body.name };
+    const newData = {
+        name : req.body.name,
+        book: req.body.book
+       }
+    Subscriber.findOneAndUpdate(query,  newData,function (err, subscriber) {
+        if (err) 
+        return res.send(500, {error: err});
+        return res.send('Succesfully saved now.');
     });
 
 };
-// Handle delete book
+
+// Handle delete sub
 exports.delete = function (req, res) {
     Subscriber.findOneAndRemove({
-        name: req.params.name
+        name: req.body.name
     }, function (err, subscriber) {
         if (err)
             res.send(err);
