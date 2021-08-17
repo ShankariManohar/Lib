@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 // Setup schema
 var subscriberSchema = mongoose.Schema({
-    name: {
+    subname: {
         type: String,
         required: true
     },

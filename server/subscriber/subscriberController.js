@@ -19,10 +19,10 @@ exports.index = function (req, res) {
 
 exports.new = function (req, res) {
     var subscriber = new Subscriber();
-    subscriber.name = req.body.name ? req.body.name : subscriber.name;
+    subscriber.subname = req.body.subname ? req.body.subname : subscriber.subname;
     subscriber.books = req.body.books;
    
-    console.log(subscriber +"-"+req.body.name);
+    console.log(subscriber +"-"+req.body.subname);
     
 // save the book and check for errors
 subscriber.save(function (err) {
@@ -36,7 +36,7 @@ res.json({
 };
 // Handle view book info
 exports.view = function (req, res) {
-    Subscriber.find(req.params.name, function (err, subscriber) {
+    Subscriber.find(req.params.subname, function (err, subscriber) {
         if (err)
             res.send(err);
         res.json({
@@ -47,9 +47,9 @@ exports.view = function (req, res) {
 };
 // Handle update sub info
 exports.update = function (req, res) {
-    const query = { name: req.body.name };
+    const query = { subname: req.body.subname };
     const newData = {
-        name : req.body.name,
+        subname : req.body.subname,
         book: req.body.book
        }
     Subscriber.findOneAndUpdate(query,  newData,function (err, subscriber) {
@@ -63,7 +63,7 @@ exports.update = function (req, res) {
 // Handle delete sub
 exports.delete = function (req, res) {
     Subscriber.findOneAndRemove({
-        name: req.body.name
+        subname: req.body.subname
     }, function (err, subscriber) {
         if (err)
             res.send(err);

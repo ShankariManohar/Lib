@@ -17,15 +17,12 @@ var subscriberController = require('../Lib/server/subscriber/subscriberControlle
 router.route('/books')
     .get(bookController.index)
     .post(bookController.new);
-// router.route('/books/:name')
-//     .get(bookController.view)
-//     .patch(bookController.update)
-//     .put(bookController.update)
-//     .delete(bookController.delete);
 
 router.delete('/delete_book', bookController.delete);
 router.patch('/update_book', bookController.update);
 router.put('/update_book', bookController.update);
+router.put('/issue_book',bookController.issueBook);
+router.patch('/issue_book',bookController.issueBook);
 
     // sub routes
 router.route('/subscribers')
